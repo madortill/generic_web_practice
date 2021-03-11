@@ -17,6 +17,12 @@ cardTypes.notFound = card({
 cardTypes.ending = card({
     init(screen) {
         screen.querySelector(".ending-img").src = screen.charecterImg;
+        screen.querySelector("#restartBtn").addEventListener("click", () => {
+            for (let screen of screens) {
+                screen.storage = {};
+            }
+            location.hash = "";
+        }, false);
     }
 });
 

@@ -1,3 +1,4 @@
+window.__dev__mode__flag = "";
 function _setup() {
     let dataRequest = new XMLHttpRequest();
     dataRequest.open("GET", "data.json");
@@ -95,8 +96,10 @@ function _loadScreen(loadedScreen) {
      */
     window.onpopstate = (e) => {
         let screen = findScreen(location.hash);
+        let reDo = (screen.element.hasInitialized !== screen.finished) && !screen.isInteractive;
         history.replaceState(null, screen.title, screen.urlHash || "/");
         changeScreen(screen, true);
+        if (reDo) screen.finished = true;
     };
 
     history.replaceState(null, loadedScreen.name, loadedScreen.urlHash);
