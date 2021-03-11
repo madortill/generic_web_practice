@@ -1,4 +1,3 @@
-
 function _setup() {
     let dataRequest = new XMLHttpRequest();
     dataRequest.open("GET", "data.json");
