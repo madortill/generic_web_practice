@@ -57,7 +57,7 @@ let historyStack = {
                 }
             }
             changeScreen(newScreen);
-            history.replaceState(null, currentScreen.title, currentScreen.urlHash || "/");
+            history.replaceState(null, currentScreen.title, location.pathname + (currentScreen.urlHash || ""));
         }
         return true;
     },
@@ -86,7 +86,7 @@ let historyStack = {
             newScreen = currentScreen.advance(1);
         else newScreen = screens[index + 1];
         changeScreen(newScreen);
-        historyStack.pushState(null, newScreen.title, newScreen.urlHash || "/");
+        historyStack.pushState(null, newScreen.title, location.pathname + (newScreen.urlHash || ""));
         return true;
     },
     go: history.go.bind(history),

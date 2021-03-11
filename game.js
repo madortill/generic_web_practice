@@ -1,4 +1,3 @@
-window.__dev__mode__flag = "";
 
 function _setup() {
     let dataRequest = new XMLHttpRequest();
@@ -50,7 +49,7 @@ function findScreen(hash) {
         for (let screen of screens) {
             if (screen.uniqueID === type) {
                 let finished = screen.storage.finished || [];
-                let index = "__dev__mode__flag" in window && screen.maxProgress || finished.findIndex(e => e) + 1;
+                let index = "__dev__mode__flag" in window ? screen.maxProgress : finished.findIndex(e => e) + 1;
                 progress = Math.min(Number(progress || 0), index);
                 return screen.advance(progress);
             }

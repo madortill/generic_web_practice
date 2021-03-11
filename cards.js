@@ -125,12 +125,12 @@ cardTypes.americanQueations = card({
         }
         if (screen.finished) {
             if (index !== undefined) {
-                if (index === question.right)
+                if (index + 1 === question.right)
                     helper.addCls(answers[index], "correct");
                 else
                     helper.addCls(answers[index], "incorrect");
             }
-            helper.addCls(answers[question.right], "highlight-correct");
+            helper.addCls(answers[question.right - 1], "highlight-correct");
             screen.disable()
         }
         screen.explain(question.explanation)
@@ -182,14 +182,15 @@ cardTypes.multichoiceQuestions = card({
         if (screen.finished) {
             for (let index of indexes) {
                 let box = answers[index].querySelector(".multichoice-check-area");
-                if (question.right.indexOf(index) !== -1) {
+                if (question.right.indexOf(index + 1) !== -1)
                     helper.addCls(box, "highlight-correct");
-                } else {
+                else
                     helper.addCls(box, "incorrect");
-                }
             }
-            for (let correctAnsw of question.right)
+            for (let correctAnsw of question.right) {
                 helper.addCls(answers[correctAnsw - 1].querySelector(".multichoice-check-area"), "highlight-correct");
+                console.log(correctAnsw);
+            }
             screen.disable()
         }
         screen.explain(question.explanation);
