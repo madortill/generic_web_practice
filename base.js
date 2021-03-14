@@ -177,7 +177,7 @@ class ExerciseScreen {
     }
 
     get typeClass() {
-        Object.defineProperty(this, "typeClass", { value: this.type.replace(/(?<=.)[A-Z]/g, (str) => `-${str.toLowerCase()}`) });
+        Object.defineProperty(this, "typeClass", { value: this.type.replace(/.[A-Z]/g, (str) => `${str.substr(0, 1)}-${str.substr(1).toLowerCase()}`) });
         return this.typeClass;
     }
 
